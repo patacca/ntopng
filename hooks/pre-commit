@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# With this as soon as something fails the script exit
+set -eo pipefail
+
 LUA_INTERPR="lua5.3"
 
 # Check coding style

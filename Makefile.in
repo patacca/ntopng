@@ -293,6 +293,9 @@ fast-format:
 	find ./src ./include -type f -mtime -2 \( -name '*.cpp' -o -name '*.h' \) -exec clang-format --style=file -i '{}' \;
 	if test -d ./pro; then find ./pro/src ./pro/include -type f -mtime -2 \( -name '*.cpp' -o -name '*.h' \) -exec clang-format --style=file -i '{}' \; ; fi
 
+format-commit:
+	git diff --name-only --cached | grep -P '^(src|include)/.*\.(cpp|h)$$' | xargs -n1 clang-format --style=file
+
 check-format:
 	git diff --name-only --cached | grep -P '^(src|include)/.*\.(cpp|h)$$' | xargs -n1 clang-format -n --Werror --style=file
 
